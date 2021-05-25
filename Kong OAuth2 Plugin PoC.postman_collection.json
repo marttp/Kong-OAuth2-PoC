@@ -169,7 +169,7 @@
 			"response": []
 		},
 		{
-			"name": "OAuth2 Client Credential Apply globally",
+			"name": "OAuth2 Client Credential & Authorization Code - Apply globally",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -203,6 +203,11 @@
 						},
 						{
 							"key": "config.enable_client_credentials",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "config.enable_authorization_code",
 							"value": "true",
 							"type": "text"
 						}
@@ -223,7 +228,7 @@
 			"response": []
 		},
 		{
-			"name": "OAuth2 Client Credential Apply [Book Alternative Service]",
+			"name": "OAuth2 Client Credential & Authorization Code - Apply [Book Alternative Service]",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -257,6 +262,11 @@
 						},
 						{
 							"key": "config.enable_client_credentials",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "config.enable_authorization_code",
 							"value": "true",
 							"type": "text"
 						}
@@ -370,8 +380,8 @@
 						},
 						{
 							"key": "provision_key",
-							"value": "oNBKAcVp1yUwrhAMuU8JlQKW9vFQlXpE",
-							"description": "Get from OAuth2 Client Credential Apply globally",
+							"value": "SsVnxuSEQ0rPJDG7aTXRp7jOTi7kS1hF",
+							"description": "OAuth2 Client Credential & Authorization Code - Apply globally",
 							"type": "text"
 						}
 					]
@@ -425,7 +435,7 @@
 						{
 							"key": "provision_key",
 							"value": "DgCKBA2WaW41xI2W5xJ2md1a5uZAZX5L",
-							"description": "Get from OAuth2 Client Credential Apply globally | OAuth2 Client Credential Apply [Book Alternative Service]",
+							"description": "OAuth2 Client Credential & Authorization Code - Apply [Book Alternative Service]",
 							"type": "text"
 						}
 					]
@@ -454,7 +464,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer HkuiPuhO8ismB8mlTmJpsVX37yn04Z2G",
+						"value": "Bearer UZTuCFCSkMF5XxIccV3HBYeq1Nj1JraS",
 						"description": "Get access token from Obtain AccessToken",
 						"type": "text"
 					}
