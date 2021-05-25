@@ -1,0 +1,516 @@
+{
+	"info": {
+		"_postman_id": "0dc9978c-0701-4fef-89a7-11299ca55b31",
+		"name": "Kong OAuth2 Plugin PoC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add book normal service",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "url",
+							"value": "http://book-app:9000/api/books",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/services/book-service-normal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"services",
+						"book-service-normal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add book alternative service",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "url",
+							"value": "http://book-app:9000/api/books/alternatives",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/services/book-service-alternative",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"services",
+						"book-service-alternative"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add route to book normal",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "paths",
+							"value": "/books",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/services/book-service-normal/routes/book-normal-route",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"services",
+						"book-service-normal",
+						"routes",
+						"book-normal-route"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add route to book alternative",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "paths",
+							"value": "/books/alternatives",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/services/book-service-alternative/routes/book-alternative-route",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"services",
+						"book-service-alternative",
+						"routes",
+						"book-alternative-route"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book Normal via Kong",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book Alternative via Kong",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/books/alternatives",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"alternatives"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OAuth2 Client Credential Apply globally",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "oauth2",
+							"type": "text"
+						},
+						{
+							"key": "config.scopes",
+							"value": "email",
+							"type": "text"
+						},
+						{
+							"key": "config.scopes",
+							"value": "phone",
+							"type": "text"
+						},
+						{
+							"key": "config.scopes",
+							"value": "address",
+							"type": "text"
+						},
+						{
+							"key": "config.mandatory_scope",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "config.enable_client_credentials",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/plugins",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"plugins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OAuth2 Client Credential Apply [Book Alternative Service]",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "oauth2",
+							"type": "text"
+						},
+						{
+							"key": "config.scopes",
+							"value": "email",
+							"type": "text"
+						},
+						{
+							"key": "config.scopes",
+							"value": "phone",
+							"type": "text"
+						},
+						{
+							"key": "config.scopes",
+							"value": "address",
+							"type": "text"
+						},
+						{
+							"key": "config.mandatory_scope",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "config.enable_client_credentials",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/services/book-service-alternative/plugins",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"services",
+						"book-service-alternative",
+						"plugins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Consumer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "app",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/consumers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"consumers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Application with OAuth2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "book-mobile-app",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/consumers/app/oauth2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"consumers",
+						"app",
+						"oauth2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtain AccessToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "br4tJH0twn8wEFVWKiq3ZFRcS2zn1efu",
+							"description": "Get from Create Application with OAuth2",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "91Cxk2dkwANxng0DwX28L8W4oWyemAtF",
+							"description": "Get from Create Application with OAuth2",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "email",
+							"type": "text"
+						},
+						{
+							"key": "provision_key",
+							"value": "oNBKAcVp1yUwrhAMuU8JlQKW9vFQlXpE",
+							"description": "Get from OAuth2 Client Credential Apply globally",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:8443/books/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"books",
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtain AccessToken for Book Alternative",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "br4tJH0twn8wEFVWKiq3ZFRcS2zn1efu",
+							"description": "Get from Create Application with OAuth2",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "91Cxk2dkwANxng0DwX28L8W4oWyemAtF",
+							"description": "Get from Create Application with OAuth2",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "email",
+							"type": "text"
+						},
+						{
+							"key": "provision_key",
+							"value": "DgCKBA2WaW41xI2W5xJ2md1a5uZAZX5L",
+							"description": "Get from OAuth2 Client Credential Apply globally | OAuth2 Client Credential Apply [Book Alternative Service]",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:8443/books/alternatives/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"books",
+						"alternatives",
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book Normal via Kong include AccessToken",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer HkuiPuhO8ismB8mlTmJpsVX37yn04Z2G",
+						"description": "Get access token from Obtain AccessToken",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all plugins that use in our Kong",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/plugins",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"plugins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Plugin",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/plugins/3488ceb6-44c5-49c3-9b5f-586f549815e9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"plugins",
+						"3488ceb6-44c5-49c3-9b5f-586f549815e9"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
