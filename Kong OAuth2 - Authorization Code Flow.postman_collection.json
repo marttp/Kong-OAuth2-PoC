@@ -1,0 +1,503 @@
+{
+	"info": {
+		"_postman_id": "9b38a2ff-c376-4dd2-a472-6ce59a607a77",
+		"name": "Kong OAuth2 - Authorization Code Flow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add book service",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "url",
+							"value": "http://book-app:9000/",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/services/book-service",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"services",
+						"book-service"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add route to book-service (MS 1)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "paths",
+							"value": "/books",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/services/book-service/routes/book-ms-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"services",
+						"book-service",
+						"routes",
+						"book-ms-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add route to book-service (MS 2)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "paths",
+							"value": "/book-others",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/services/book-service/routes/book-ms-2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"services",
+						"book-service",
+						"routes",
+						"book-ms-2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book Normal via Kong from MS 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/books/api/v1/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"api",
+						"v1",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book Normal via Kong from MS 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/book-others/api/v1/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"book-others",
+						"api",
+						"v1",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OAuth2 Authorization Code - Apply globally (with global_credentials & reuse_refresh_token)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "oauth2",
+							"type": "text"
+						},
+						{
+							"key": "config.scopes",
+							"value": "email",
+							"type": "text"
+						},
+						{
+							"key": "config.scopes",
+							"value": "phone",
+							"type": "text"
+						},
+						{
+							"key": "config.scopes",
+							"value": "address",
+							"type": "text"
+						},
+						{
+							"key": "config.mandatory_scope",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "config.enable_client_credentials",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "config.enable_authorization_code",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "config.global_credentials",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "config.reuse_refresh_token",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/plugins",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"plugins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Consumer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "app",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/consumers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"consumers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Application with OAuth2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "book-mobile-app",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uris",
+							"value": "http://konghq.com/",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/consumers/app/oauth2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"consumers",
+						"app",
+						"oauth2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Backend Authorization to Kong",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "lc2waV8ttWWe1bQviRkGoFIzwcMQliux",
+							"description": "Get from Create Application with OAuth2",
+							"type": "text"
+						},
+						{
+							"key": "response_type",
+							"value": "code",
+							"type": "text"
+						},
+						{
+							"key": "authenticated_userid",
+							"value": "userid123",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "email",
+							"type": "text"
+						},
+						{
+							"key": "provision_key",
+							"value": "QSp2hHkHGFO5Fogy1pEXkkDfJOW91Yzo",
+							"description": "OAuth2 Authorization Code - Apply globally (with global_credentials & reuse_refresh_token)",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:8443/books/oauth2/authorize",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"books",
+						"oauth2",
+						"authorize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtain AccessToken & Refresh Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "lc2waV8ttWWe1bQviRkGoFIzwcMQliux",
+							"description": "Get from Create Application with OAuth2",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "XAUd80dJV79j0jrAezj86OkibqfR8Xvg",
+							"description": "Get from Create Application with OAuth2",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "email",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "FrcIPt8m3U7nnOfkTgmvQviKTsxvmr0J",
+							"description": "Get from query string code - Backend Authorization to Kong",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:8443/books/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"books",
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book Normal via Kong from MS 1 with AccessToken",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer VLMe3SZ8lEruUeAwIxmLPoLixJzJGnFa",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/books/api/v1/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"api",
+						"v1",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtain New AccessToken with RefreshToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "lc2waV8ttWWe1bQviRkGoFIzwcMQliux",
+							"description": "Get from Create Application with OAuth2",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "XAUd80dJV79j0jrAezj86OkibqfR8Xvg",
+							"description": "Get from Create Application with OAuth2",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "W4VYOLG5IwJR0SsvNA5Txxwrnpv2eB2O",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:8443/books/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"books",
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all plugins that use in our Kong",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/plugins",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"plugins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Plugin",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/plugins/3488ceb6-44c5-49c3-9b5f-586f549815e9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"plugins",
+						"3488ceb6-44c5-49c3-9b5f-586f549815e9"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
