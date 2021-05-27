@@ -315,14 +315,14 @@
 					]
 				},
 				"url": {
-					"raw": "https://localhost:8443/books/oauth2/authorize",
+					"raw": "https://localhost:8443/mock/oauth2/authorize",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "8443",
 					"path": [
-						"books",
+						"mock",
 						"oauth2",
 						"authorize"
 					]
@@ -362,21 +362,21 @@
 						},
 						{
 							"key": "code",
-							"value": "FrcIPt8m3U7nnOfkTgmvQviKTsxvmr0J",
+							"value": "ZaAAKUq5q65Jqvo6OdTLP6eSf9UbiIQi",
 							"description": "Get from query string code - Backend Authorization to Kong",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "https://localhost:8443/books/oauth2/token",
+					"raw": "https://localhost:8443/mock/oauth2/token",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "8443",
 					"path": [
-						"books",
+						"mock",
 						"oauth2",
 						"token"
 					]
@@ -439,20 +439,20 @@
 						},
 						{
 							"key": "refresh_token",
-							"value": "W4VYOLG5IwJR0SsvNA5Txxwrnpv2eB2O",
+							"value": "Rdbu27e4lTcFKhjgNHNFmiZCiCTxwpox",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "https://localhost:8443/books/oauth2/token",
+					"raw": "https://localhost:8443/mock/oauth2/token",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "8443",
 					"path": [
-						"books",
+						"mock",
 						"oauth2",
 						"token"
 					]
@@ -494,6 +494,68 @@
 					"path": [
 						"plugins",
 						"3488ceb6-44c5-49c3-9b5f-586f549815e9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add mock service [For get token only]",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "url",
+							"value": "https://www.lipsum.com/",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/services/mock",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"services",
+						"mock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add mock route",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "paths",
+							"value": "/mock",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/services/mock/routes/mock-route",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"services",
+						"mock",
+						"routes",
+						"mock-route"
 					]
 				}
 			},
