@@ -1,4 +1,4 @@
-package dev.tpcoder.bookstore;
+package dev.tpcoder.bookstore.book;
 
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;

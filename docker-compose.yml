@@ -51,7 +51,9 @@ services:
   kong:
     depends_on:
       - kong-migrations
-    image: kong
+    build: 
+      dockerfile: Dockerfile
+      context: ./kong
     ports:
       - "8080:8000/tcp"
       - "8081:8001/tcp"
